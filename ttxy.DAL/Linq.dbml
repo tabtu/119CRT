@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="qhb_landata" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=qhb_landata;User ID=sa" SettingsObjectName="ttxy.DAL.Properties.Settings" SettingsPropertyName="qhb_landataConnectionString4" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.S_city" Member="S_city">
+    <Type Name="S_city">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cityname" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_city_S_area" Member="S_area" ThisKey="id" OtherKey="cid" Type="S_area" />
+    </Type>
+  </Table>
+  <Table Name="dbo.S_controlcenter" Member="S_controlcenter">
+    <Type Name="S_controlcenter">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="aid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_area_S_controlcenter" Member="S_area" ThisKey="aid" OtherKey="id" Type="S_area" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_firehouse" Member="U_firehouse">
+    <Type Name="U_firehouse">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="lng" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="lat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="aid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_area_U_firehouse" Member="S_area" ThisKey="aid" OtherKey="id" Type="S_area" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_firemanage" Member="U_firemanage">
+    <Type Name="U_firemanage">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="aid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_area_U_firemanage" Member="S_area" ThisKey="aid" OtherKey="id" Type="S_area" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_nodedata" Member="U_nodedata">
+    <Type Name="U_nodedata">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="lanid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="picpath" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="picname" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="picdesc" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="mainmap" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="U_nodedata_U_equipdata" Member="U_equipdata" ThisKey="id" OtherKey="nid" Type="U_equipdata" />
+      <Association Name="U_landata_U_nodedata" Member="U_landata" ThisKey="lanid" OtherKey="id" Type="U_landata" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_equipdata" Member="U_equipdata">
+    <Type Name="U_equipdata">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="x" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="y" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="logicid" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="U_nodedata_U_equipdata" Member="U_nodedata" ThisKey="nid" OtherKey="id" Type="U_nodedata" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="U_equiptype_U_equipdata" Member="U_equiptype" ThisKey="type" OtherKey="id" Type="U_equiptype" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="S_equipstatus_U_equipdata" Member="S_equipstatus" ThisKey="status" OtherKey="id" Type="S_equipstatus" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.S_lantype" Member="S_lantype">
+    <Type Name="S_lantype">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_lantype_U_landata" Member="U_landata" ThisKey="id" OtherKey="type" Type="U_landata" />
+    </Type>
+  </Table>
+  <Table Name="dbo.S_lancate" Member="S_lancate">
+    <Type Name="S_lancate">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_lancate_U_landata" Member="U_landata" ThisKey="id" OtherKey="cate" Type="U_landata" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_property" Member="U_property">
+    <Type Name="U_property">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="U_property_U_landata" Member="U_landata" ThisKey="id" OtherKey="ptid" Type="U_landata" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_maintenance" Member="U_maintenance">
+    <Type Name="U_maintenance">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="U_maintenance_U_landata" Member="U_landata" ThisKey="id" OtherKey="mtid" Type="U_landata" />
+    </Type>
+  </Table>
+  <Table Name="dbo.S_log" Member="S_log">
+    <Type Name="S_log">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tablename" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="tableid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="mid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="datetime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="discription" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="U_members_S_log" Member="U_members" ThisKey="mid" OtherKey="id" Type="U_members" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_equiptype" Member="U_equiptype">
+    <Type Name="U_equiptype">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="icon" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="U_equiptype_U_equipdata" Member="U_equipdata" ThisKey="id" OtherKey="type" Type="U_equipdata" />
+    </Type>
+  </Table>
+  <Table Name="dbo.S_equipstatus" Member="S_equipstatus">
+    <Type Name="S_equipstatus">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_equipstatus_U_equipdata" Member="U_equipdata" ThisKey="id" OtherKey="status" Type="U_equipdata" />
+    </Type>
+  </Table>
+  <Table Name="dbo.S_area" Member="S_area">
+    <Type Name="S_area">
+      <Column Name="id" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lng" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="lat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="zoom" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="S_area_S_controlcenter" Member="S_controlcenter" ThisKey="id" OtherKey="aid" Type="S_controlcenter" />
+      <Association Name="S_area_U_firehouse" Member="U_firehouse" ThisKey="id" OtherKey="aid" Type="U_firehouse" />
+      <Association Name="S_area_U_firemanage" Member="U_firemanage" ThisKey="id" OtherKey="aid" Type="U_firemanage" />
+      <Association Name="S_area_U_landata" Member="U_landata" ThisKey="id" OtherKey="areaid" Type="U_landata" />
+      <Association Name="S_city_S_area" Member="S_city" ThisKey="cid" OtherKey="id" Type="S_city" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_news" Member="U_news">
+    <Type Name="U_news">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="context" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="datetime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="cn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="U_members_U_news" Member="U_members" ThisKey="mid" OtherKey="id" Type="U_members" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_members" Member="U_members">
+    <Type Name="U_members">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="account" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="linkid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="U_members_S_log" Member="S_log" ThisKey="id" OtherKey="mid" Type="S_log" />
+      <Association Name="U_members_U_news" Member="U_news" ThisKey="id" OtherKey="mid" Type="U_news" />
+    </Type>
+  </Table>
+  <Table Name="dbo.U_landata" Member="U_landata">
+    <Type Name="U_landata">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="areaid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="lng" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="lat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="building" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ptid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="mtid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="isused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cate" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="manager" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HOST_CODE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PASSWD" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVE" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="U_landata_U_nodedata" Member="U_nodedata" ThisKey="id" OtherKey="lanid" Type="U_nodedata" />
+      <Association Name="S_area_U_landata" Member="S_area" ThisKey="areaid" OtherKey="id" Type="S_area" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="S_lancate_U_landata" Member="S_lancate" ThisKey="cate" OtherKey="id" Type="S_lancate" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="S_lantype_U_landata" Member="S_lantype" ThisKey="type" OtherKey="id" Type="S_lantype" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="U_maintenance_U_landata" Member="U_maintenance" ThisKey="mtid" OtherKey="id" Type="U_maintenance" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="U_property_U_landata" Member="U_property" ThisKey="ptid" OtherKey="id" Type="U_property" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>

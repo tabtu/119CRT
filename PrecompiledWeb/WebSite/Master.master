@@ -1,0 +1,114 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="Master, App_Web_lleqnx0p" %>
+
+<%@ Register Src="Control/S_Menutree.ascx" TagName="Manutree" TagPrefix="uc2" %>
+
+<%@ Register src="Control/S_Menu.ascx" tagname="S_Menu" tagprefix="uc1" %>
+
+<!DOCTYPE html>
+
+<%--<script type="text/javascript">
+
+    window.setInterval(function () {
+        CircleCheck();
+    }, 60 * 1000);
+
+    function CircleCheck() {
+        document.getElementById("btn_epn").click();
+    }
+</script>--%>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>智慧消防管理系统</title>
+    <link rel="stylesheet" type="text/css" href="~/Styles/DefaultStyle.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+     <form runat="server" id="loginform">
+        <div class="defualtpage">
+            <div class="masterhead">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="logotable">
+                                <a id="spantitle2">智慧消防管理系统</a>
+                                </div>
+                        </td>
+                        <td class="seclogotable">
+                            <table class="manuposition">
+                                <tr>
+                                    <td>
+                                        <table class="loginuser">
+                                            <tr>
+                                                <td id="name">
+                                                    <a href="ChangePassword.aspx">
+                                                        <asp:Label ID="Label_user" runat="server" Text=""></asp:Label>
+                                                        欢迎您</a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:history.go(-1)" class="logout">返回</a>
+                                                </td>
+                                                <td>
+                                                    <a href="HomePage.aspx" class="logout">首页</a>
+                                                </td>
+                                                <td>
+                                                    <a href="AlertHp.aspx" target="_blank" class="logout">监控</a>
+                                                </td>
+                                                <td>
+                                                    <a href="LoginOut.aspx" class="logout">注销</a>
+                                                </td>
+                                                <td>
+                                                    <a href="Help.aspx" class="logout">帮助</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td class="masterbodylogo" >
+                            <%--<uc2:Manutree ID="Manutree1" runat="server" />--%>
+                            <uc1:S_Menu ID="S_Menu1" runat="server" />
+                        </td>
+                        </tr>
+                    <tr>
+                        <%--<td>
+                              <div>
+                                <asp:ImageButton ID="ImageButton_logobuttonvisible" runat="server" BorderStyle="None"
+                                ImageUrl="~/Pic/logobuttonvisible.png" OnClick="Button_logovisible_Click" />
+                            </div>
+                            
+                        </td>--%>
+                        <td class="masterbody" style="vertical-align: top; text-align: center; width: 1390px;">
+                            <table class="contenttable" style="width: 1390px">
+                                <tr>
+                                    <td>
+                                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+       
+        <footer>
+            <p class="footer">
+                ®智慧消防管理系统 v1.5.25
+                <br />
+                ©2015 贵州科盾技防科技有限公司 版权所有</p>
+        </footer>
+        </div>
+    </form>
+</body>
+</html>
